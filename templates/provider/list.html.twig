@@ -1,0 +1,17 @@
+<h1 align="center">Liste des fournisseurs</h1>
+<table align="center" border="1">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Adress</th>
+	</tr>
+	{% for provider in providers %}
+		<tr>
+			<td>{{provider.id}}</td>
+			<td>{{provider.name}}</td>
+			<td>{{provider.email}}</td>
+			<td>{{provider.adress}}</td>
+		</tr>
+	{% endfor %}
+</table>
