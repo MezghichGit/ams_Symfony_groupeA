@@ -20,11 +20,14 @@ class ProviderController extends AbstractController
      */
     public function index(ProviderRepository $providerRepository): Response
     {
+        
+
         return $this->render('provider/index.html.twig', [
             'providers' => $providerRepository->findAll(),
+           
         ]);
 
-        
+
         /*
         return $this->render('provider/list.html.twig', [
             'providers' => $providerRepository->findAll(),
@@ -36,10 +39,17 @@ class ProviderController extends AbstractController
      */
     public function new(Request $request): Response
     {
+      
         $provider = new Provider();
-        $form = $this->createForm(ProviderType::class, $provider);
-        $form->handleRequest($request);
 
+        //$provider->setName("HP");
+        //$provider->setAdress("Toto");
+        //$provider->setEmail("CC");
+
+        $form = $this->createForm(ProviderType::class, $provider);
+
+        $form->handleRequest($request);
+       
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($provider);

@@ -47,4 +47,15 @@ class ProviderRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    public function totalProviders()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery('SELECT COUNT(p.id) FROM App\Entity\Provider p');
+        $result = $query->getSingleScalarResult();
+        return $result;
+
+    }
 }
