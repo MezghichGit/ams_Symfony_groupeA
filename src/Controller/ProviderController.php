@@ -52,6 +52,25 @@ class ProviderController extends AbstractController
         $form->handleRequest($request);
        
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $photoFile = $form->get('photo')->getData();
+
+            if ($photoFile) {
+                $originalphotoFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                
+                // $safePhotoFilename = transliterator_transliterate('AnyLatin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalphotoFilename);
+                 $newPhotoFilename = $originalphotoFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+                 // Move the file to the directory where brochures are stored
+            try {
+                $photoFile->move($this->getParameter('providers_directory'), $newPhotoFilename
+                );
+            
+                } catch (FileException $e) {
+                
+                }
+            $provider->setPhoto($newPhotoFilename);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($provider);
             $entityManager->flush();

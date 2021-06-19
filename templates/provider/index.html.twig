@@ -21,6 +21,7 @@
                     <th>Name</th>
                     <th>Adress</th>
                     <th>Email</th>
+                    <th>Photo</th>
                     <th>Code</th>
                     <th>Actions</th>
                   </tr>
@@ -33,6 +34,9 @@
                 <td>{{ provider.name }}</td>
                 <td>{{ provider.adress }}</td>
                 <td>{{ provider.email }}</td>
+                <td><img src="{{asset('uploads/providers/'~ provider.photo )}}" width="100" height="100"/></td>
+
+            
                 <td>{{ provider.code }}</td>
                 <td>
                     <a href="{{ path('provider_show', {'id': provider.id}) }}">show</a>
@@ -51,6 +55,7 @@
                     <th>Name</th>
                     <th>Adress</th>
                     <th>Email</th>
+                    <th>Photo</th>
                     <th>Code</th>
                     <th>Actions</th>
                   </tr>
