@@ -10,15 +10,15 @@ use App\Repository\ProviderRepository;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/", name="admin")
      */
     public function index(ProviderRepository $providerRepository): Response
     {
-        $nbreProducts = $providerRepository->totalProviders();
+         
 
         //return new Response($nbreProducts);
         return $this->render('admin/index.html.twig', [
-             'total'=>$nbreProducts,
+             'total'=>$providerRepository->totalProviders()
         ]);
     }
 }

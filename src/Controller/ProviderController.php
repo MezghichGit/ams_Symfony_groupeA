@@ -24,6 +24,7 @@ class ProviderController extends AbstractController
 
         return $this->render('provider/index.html.twig', [
             'providers' => $providerRepository->findAll(),
+          
            
         ]);
 
@@ -61,6 +62,7 @@ class ProviderController extends AbstractController
         return $this->render('provider/new.html.twig', [
             'provider' => $provider,
             'form' => $form->createView(),
+            
         ]);
     }
 

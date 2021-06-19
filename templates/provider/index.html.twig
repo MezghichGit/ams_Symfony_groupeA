@@ -1,8 +1,8 @@
-{% extends 'admin/index.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}{{parent()}} - Provider index{% endblock %}
 
-{% block body %}
+   {% block fils %}
 {{parent()}}
 
     <a class="btn btn-primary" href="{{ path('provider_new') }}" style="margin-bottom:15px">Create new</a>
