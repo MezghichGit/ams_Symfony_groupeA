@@ -1,0 +1,26 @@
+# swiftmailer:
+#     transport: gmail
+#     host: smtp.gmail.com
+#     port: 465
+#     auth_mode: login
+#     username: amsgroupea@gmail.com
+#     password: amsa2021
+#     encryption: ssl
+#     stream_options:
+#         ssl:
+#             allow_self_signed: true
+#             verify_peer: false
+#             verify_peer_name: false
+swiftmailer:
+    transport: smtp
+    host: ssl0.ovh.net
+    port: 465
+    auth_mode: login
+    username: sesame@smart-it-partner.com
+    password: sesame2021
+    encryption: ssl
+    stream_options:
+        ssl:
+            allow_self_signed: true
+            verify_peer: false
+            verify_peer_name: false
