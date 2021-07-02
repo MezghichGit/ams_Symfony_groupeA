@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Currency;
   
@@ -24,12 +25,20 @@ class DeviseController extends AbstractController
 */
 
 // injection de dépendences  de l'objet de type Currency
-public function cours(Currency $my_service)
-    {
+    public function cours(Currency $my_service, Request $request)
+        {
             // On récupère le service et on spécifie les paramètres
             $from = "USD";
-            $to = "EUR";
-            $amount = 200;
-            return new Response("taux = " . $my_service->conversion($from,$to,$amount));
+
+            $resultat = 0;
+
+        if($request->getMethod()=="POST")
+        {
+                $devisecible = $request->get('devisecible');
+                $montant = $request->get('montant');
+                $resultat = $my_service->conversion($from,$devisecible,$montant);        
+        }
+        return $this->render('devise/index.html.twig', ['resultat' =>  $resultat]);
+        
     }
 }

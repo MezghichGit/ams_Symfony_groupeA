@@ -1,20 +1,106 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DeviseController!{% endblock %}
+  {% block menu %}
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{path('provider_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provider List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('provider_new')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provider Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('article_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Article List</p>
+                </a>
+              </li>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+                <li class="nav-item">
+                <a href="{{path('article_new')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Article Add</p>
+                </a>
+              </li>
+            </ul>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ecrire un message</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('cours')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Conversion Devise</p>
+                </a>
+              </li>
+            </ul>
+            {% endblock %}
+{% block fils %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/amine/Desktop/Desktop/support_Symfony/ingta-2a/ams/src/Controller/DeviseController.php'|file_link(0) }}">src/Controller/DeviseController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/amine/Desktop/Desktop/support_Symfony/ingta-2a/ams/templates/devise/index.html.twig'|file_link(0) }}">templates/devise/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+<!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Faire une conversion de devise</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="POST" action="">
+
+              <label for="devisecible">Conversion de la source : USD</label>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="devisecible">Devise cible</label>
+                    <select  class="form-control" name="devisecible" id="devisecible">
+                      <option value="-" disabled selected>-</option>
+                      <option value="TND">TND</option>
+                      <option value="EUR">EUR</option>
+                    </select>
+                
+                  </div>
+
+                  <div class="form-group">
+                    <label for="montant">Montant</label>
+                    <input type="number" name="montant" class="form-control" id="montant" placeholder="Enter le sujet de l'email">
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Resultat</label>
+                    <textarea name="resulat" class="form-control" id="message" placeholder="résultat de conversion">{{resultat}}</textarea>
+                  </div>      
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Convertir</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+           
+          
+
+                
+              
+                <!-- /input-group -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- Horizontal Form -->
+        
+            <!-- /.card -->
+
+          </div>
+          <!--/.col (left) -->
+  {% endblock %}

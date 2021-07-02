@@ -221,8 +221,9 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
             {% block menu %}
+            <ul class="nav nav-treeview">
+            
               <li class="nav-item">
                 <a href="{{path('provider_index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -248,8 +249,24 @@
                   <p>Article Add</p>
                 </a>
               </li>
-               {% endblock %}
+               
             </ul>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ecrire un message</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('cours')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Conversion Devise</p>
+                </a>
+              </li>
+            </ul>
+            {% endblock %}
           </li>
     
     
