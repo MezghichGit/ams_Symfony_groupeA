@@ -1,5 +1,35 @@
 {% extends 'base.html.twig' %}
 
+
+{% block menu %}
+              <li class="nav-item">
+                <a href="{{path('provider_index')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provider List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('provider_new')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provider Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('article_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Article List</p>
+                </a>
+              </li>
+
+                <li class="nav-item">
+                <a href="{{path('article_new')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Article Add</p>
+                </a>
+              </li>
+               {% endblock %}
+
+
 {% block title %}{{parent()}} - Provider index{% endblock %}
 
    {% block fils %}

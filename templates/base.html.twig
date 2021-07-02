@@ -222,8 +222,9 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+            {% block menu %}
               <li class="nav-item">
-                <a href="{{path('provider_index')}}" class="nav-link active">
+                <a href="{{path('provider_index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Provider List</p>
                 </a>
@@ -247,6 +248,7 @@
                   <p>Article Add</p>
                 </a>
               </li>
+               {% endblock %}
             </ul>
           </li>
     
