@@ -1,106 +1,162 @@
 {% extends 'base.html.twig' %}
 
-  {% block menu %}
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{path('provider_index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Provider List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{path('provider_new')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Provider Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{path('article_index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Article List</p>
-                </a>
-              </li>
+{% block menu %}
+	<ul class="nav nav-treeview">
+		<li class="nav-item">
+			<a href="{{path('provider_index')}}" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Provider List</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{path('provider_new')}}" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Provider Add</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{path('article_index')}}" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Article List</p>
+			</a>
+		</li>
 
-                <li class="nav-item">
-                <a href="{{path('article_new')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Article Add</p>
-                </a>
-              </li>
-            </ul>
+		<li class="nav-item">
+			<a href="{{path('article_new')}}" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Article Add</p>
+			</a>
+		</li>
+	</ul>
 
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ecrire un message</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{path('cours')}}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Conversion Devise</p>
-                </a>
-              </li>
-            </ul>
-            {% endblock %}
+	<ul class="nav nav-treeview">
+		<li class="nav-item">
+			<a href="#" class="nav-link">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Ecrire un message</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="{{path('cours')}}" class="nav-link active">
+				<i class="far fa-circle nav-icon"></i>
+				<p>Conversion Devise</p>
+			</a>
+		</li>
+	</ul>
+{% endblock %}
 {% block fils %}
 
-<!-- left column -->
-          <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Faire une conversion de devise</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form method="POST" action="">
 
-              <label for="devisecible">Conversion de la source : USD</label>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="devisecible">Devise cible</label>
-                    <select  class="form-control" name="devisecible" id="devisecible">
-                      <option value="-" disabled selected>-</option>
-                      <option value="TND">TND</option>
-                      <option value="EUR">EUR</option>
-                    </select>
-                
-                  </div>
+	<hr/>
 
-                  <div class="form-group">
-                    <label for="montant">Montant</label>
-                    <input type="number" name="montant" class="form-control" id="montant" placeholder="Enter le sujet de l'email">
-                  </div>
-                  <div class="form-group">
-                    <label for="message">Resultat</label>
-                    <textarea name="resulat" class="form-control" id="message" placeholder="résultat de conversion">{{resultat}}</textarea>
-                  </div>      
-                </div>
-                <!-- /.card-body -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<h1>Cliquez sur un personnage</h1>
+				<button type="button" class="btn btn-warning">Homer</button>
+				<button type="button" class="btn btn-danger">Cartman</button>
+				<button type="button" class="btn btn-primary">Elsa</button>
+				<button type="button" class="btn btn-success">Lord Farquaad</button>
+				<br><br>
+				<div>
+					<h2>Titre de l'oeuvre :
+						<span id="titre"></span>
+					</h2>
+					<h2>Producteur :
+						<span id="producteur"></span>
+					</h2>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Convertir</button>
-                </div>
-              </form>
-            </div>
-            <!-- /.card -->
 
-           
-          
+	<hr/>
+	<!-- left column -->
+	<div
+		class="col-md-12">
+		<!-- general form elements -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">Faire une conversion de devise</h3>
+			</div>
+			<!-- /.card-header -->
+			<!-- form start -->
+			<form method="POST" action="">
 
-                
-              
-                <!-- /input-group -->
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-            <!-- Horizontal Form -->
-        
-            <!-- /.card -->
+				<label for="devisecible">Conversion de la source : USD</label>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="devisecible">Devise cible</label>
+						<select class="form-control" name="devisecible" id="devisecible">
+							<option value="-" disabled selected>-</option>
+							<option value="TND">TND</option>
+							<option value="EUR">EUR</option>
+						</select>
 
-          </div>
-          <!--/.col (left) -->
-  {% endblock %}
+					</div>
+
+					<div class="form-group">
+						<label for="montant">Montant</label>
+						<input type="number" name="montant" class="form-control" id="montant" placeholder="Enter le sujet de l'email">
+					</div>
+					<div class="form-group">
+						<label for="message">Resultat</label>
+						<textarea name="resulat" class="form-control" id="message" placeholder="résultat de conversion">{{resultat}}</textarea>
+					</div>
+				</div>
+				<!-- /.card-body -->
+
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary">Convertir</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.card -->
+
+
+		<!-- /input-group -->
+	</div>
+	<!-- /.card-body -->
+</div>
+<!-- /.card --><!-- Horizontal Form -->
+
+<!-- /.card --></div><!--/.col (left) -->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+console.log("Script working properly");
+// /// fonction ajax traitement employer
+$('.btn').click(function () {
+
+
+var personnage = $(this).html();
+//alert(personnage) // recupération de l"mployer
+$.ajax({
+  url:'/ajax',
+  type: "POST",
+  dataType: "json",
+  data: {
+       "personnage": personnage
+     },
+  async: true,
+  success: function (res)
+    {
+        console.log(res)
+        $('#titre').text(res.titre);
+        $('#producteur').text(res.producteur);
+    }
+});
+  //alert("Ok");
+})
+});
+
+</script>
+
+{% endblock %}
+
+
