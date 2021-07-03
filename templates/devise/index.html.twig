@@ -82,13 +82,14 @@
 			</div>
 			<!-- /.card-header -->
 			<!-- form start -->
-			<form method="POST" action="">
+
+			<!--form method="POST" action=""-->
 
 				<label for="devisecible">Conversion de la source : USD</label>
 				<div class="card-body">
 					<div class="form-group">
 						<label for="devisecible">Devise cible</label>
-						<select class="form-control" name="devisecible" id="devisecible">
+						<select id="devisecible" class="form-control" name="devisecible" id="devisecible">
 							<option value="-" disabled selected>-</option>
 							<option value="TND">TND</option>
 							<option value="EUR">EUR</option>
@@ -98,19 +99,19 @@
 
 					<div class="form-group">
 						<label for="montant">Montant</label>
-						<input type="number" name="montant" class="form-control" id="montant" placeholder="Enter le sujet de l'email">
+						<input id="montant" type="number" name="montant" class="form-control" id="montant" placeholder="Enter le sujet de l'email">
 					</div>
 					<div class="form-group">
 						<label for="message">Resultat</label>
-						<textarea name="resulat" class="form-control" id="message" placeholder="résultat de conversion">{{resultat}}</textarea>
+						<textarea id="resulat" name="resulat" class="form-control" id="message" placeholder="résultat de conversion">{{ resultat }}</textarea>
 					</div>
 				</div>
 				<!-- /.card-body -->
 
 				<div class="card-footer">
-					<button type="submit" class="btn btn-primary">Convertir</button>
+					<button id="conversion" class="btn btn-primary">Convertir</button>
 				</div>
-			</form>
+			<!--/form-->
 		</div>
 		<!-- /.card -->
 
@@ -131,10 +132,11 @@
 $(document).ready(function () {
 console.log("Script working properly");
 // /// fonction ajax traitement employer
-$('.btn').click(function () {
+/*
+$('#btn').click(function () {
 
 
-var personnage = $(this).html();
+var devise = $(this).html();
 //alert(personnage) // recupération de l"mployer
 $.ajax({
   url:'/ajax',
@@ -153,8 +155,38 @@ $.ajax({
 });
   //alert("Ok");
 })
+*/
+/////////////
+// traitement Ajax de la conversion
+
+$('#conversion').click(function () {
+
+
+var devisecible = document.getElementById("devisecible").value;
+var montant = document.getElementById("montant").value;
+
+//alert(devisecible +" "+montant);
+
+$.ajax({
+  url:'/cours',
+  type: "POST",
+  dataType: "json",
+  data: {
+       "devisecible": devisecible,
+	   "montant": montant,
+     },
+  async: true,
+  success: function (res)
+    {
+        console.log(res)
+        $('#resulat').text(res.resultat);
+    }
 });
 
+
+
+});
+});
 </script>
 
 {% endblock %}

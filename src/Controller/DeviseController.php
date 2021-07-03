@@ -36,9 +36,12 @@ class DeviseController extends AbstractController
         {
                 $devisecible = $request->get('devisecible');
                 $montant = $request->get('montant');
-                $resultat = $my_service->conversion($from,$devisecible,$montant);        
+                $resultat = $my_service->conversion($from,$devisecible,$montant);
+                $response = new Response(json_encode(array('resultat' => $resultat)));
+                $response->headers->set('Content-Type', 'application/json');
+                return $response;
         }
+
         return $this->render('devise/index.html.twig', ['resultat' =>  $resultat]);
-        
     }
 }
