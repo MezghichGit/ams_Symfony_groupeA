@@ -124,6 +124,24 @@ $('#btnlist').click(function () {
     //alert("Ok");
 
     $('#blockAdd').toggle();
+
+
+  $.ajax({
+  url:'/provider/listAjax',
+  type: "GET",
+  dataType: "json",
+  data: {
+     },
+  async: true,
+  success: function (res)
+    {
+        console.log(res)
+       // $('#resulat').text(res.resultat);
+       //alert("Ajout avec succès");
+       //location.href = '/provider/list';
+    }
+});
+
 });
 
 $('#add').click(function () {

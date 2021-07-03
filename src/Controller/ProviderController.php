@@ -35,6 +35,31 @@ class ProviderController extends AbstractController
         ]);*/
     }
 
+
+    /**
+     * @Route("/listAjax", name="provider_index_Ajax", methods={"GET"})
+     */
+    public function indexAjax(ProviderRepository $providerRepository): Response
+    {
+        
+      $providers = $providerRepository->findAll();
+/*
+      $tabProviders = array();
+      $i=0;
+      foreach($providers as $provider)
+      {
+        $tabProviders[$i] = $provider;
+        $i++;
+      }*/
+     
+
+
+      $response = new Response(json_encode($providers));
+          $response->headers->set('Content-Type', 'application/json');
+          return $response;
+       
+    }
+
     /**
      * @Route("/new", name="provider_new", methods={"GET","POST"})
      */
