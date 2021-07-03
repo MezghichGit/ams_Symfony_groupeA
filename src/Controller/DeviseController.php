@@ -37,6 +37,7 @@ class DeviseController extends AbstractController
                 $devisecible = $request->get('devisecible');
                 $montant = $request->get('montant');
                 $resultat = $my_service->conversion($from,$devisecible,$montant);
+                $resultat = number_format($resultat, 2);
                 $response = new Response(json_encode(array('resultat' => $resultat)));
                 $response->headers->set('Content-Type', 'application/json');
                 return $response;
