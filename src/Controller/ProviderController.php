@@ -85,6 +85,49 @@ class ProviderController extends AbstractController
         ]);
     }
 
+    /// Fonction d'ajout basée sur Ajax
+
+    
+    /**
+     * @Route("/ajaxAdd", name="addAjaxProvider", methods={"GET","POST"})
+     */
+    public function addAjaxProvider(Request $request) : Response{
+
+    if($request->getMethod()=="POST")
+      {
+          $name = $request->get('name');
+          $email = $request->get('email');
+          $adress = $request->get('adress');
+          $provider = new Provider();
+
+          $provider->setName($name);
+          $provider->setEmail($email);
+          $provider->setAdress($adress);
+
+          $provider->setCode(1000);
+          $provider->setPhoto("profile.png");
+
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($provider);
+          $entityManager->flush();
+
+          $response = new Response(json_encode(array(
+              'name' => $provider->getName(),
+              'email' => $provider->getEmail(),
+              'adress' => $provider->getAdress(),
+              'id' => $provider->getId(),
+            )));
+                $response->headers->set('Content-Type', 'application/json');
+                return $response;
+
+          //return $this->redirectToRoute('provider_index');
+      }
+      
+
+        return $this->render('provider/ajout.html.twig');
+        //return new Response("Ok");
+    }
+
     /**
      * @Route("/{id}", name="provider_show", methods={"GET"})
      */
@@ -128,4 +171,8 @@ class ProviderController extends AbstractController
 
         return $this->redirectToRoute('provider_index');
     }
+
+
+
+    
 }

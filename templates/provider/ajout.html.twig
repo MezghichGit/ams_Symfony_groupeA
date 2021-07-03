@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+{% block menu %}
+              <li class="nav-item">
+                <a href="{{path('provider_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provider List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('provider_new')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provider Add</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('article_index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Article List</p>
+                </a>
+              </li>
+
+                <li class="nav-item">
+                <a href="{{path('article_new')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Article Add</p>
+                </a>
+              </li>
+              </ul>
+              <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ecrire un message</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{path('cours')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Conversion Devise</p>
+                </a>
+              </li>
+            </ul>
+               {% endblock %}
+
+{% block title %}New Provider{% endblock %}
+
+{% block fils %}
+  
+  <div class="col-md-12">
+            <!-- general form elements -->
+            <buttom id="btnlist" class="btn btn-success" style="margin:20px">Charger liste providers</buttom>
+            <div class="card card-primary" id="blockAdd">
+              <div class="card-header">
+                <h3 class="card-title">Add new Provider</h3>
+              </div>
+
+              
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="providername">Name</label>
+                    <input type="text" name="name" class="form-control" id="providername" placeholder="Enter provider name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="provideremail">Email</label>
+                    <input type="email" name="email" class="form-control" id="provideremail" placeholder="Enter provider email">
+                  </div>
+                  <div class="form-group">
+                    <label for="provideradress">Adress</label>
+                    <input type="text" name="adress" class="form-control" id="provideradress" placeholder="Enter provider adress">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Provider logo</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="logo" class="custom-file-input" id="providerlogo">
+                        <label class="custom-file-label" for="providerlogo">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button id="add" class="btn btn-primary">ADD Provider Using Ajax</button>
+                </div>
+
+            </div>
+            <!-- /.card -->
+
+           
+          
+
+                
+              
+                <!-- /input-group -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <!-- Horizontal Form -->
+        
+            <!-- /.card -->
+
+          </div>
+          <!--/.col (left) -->
+   
+
+    <a href="{{ path('provider_index') }}">back to list</a>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+
+$('#btnlist').click(function () {
+
+    //alert("Ok");
+
+    $('#blockAdd').toggle();
+});
+
+$('#add').click(function () {
+
+var name = document.getElementById("providername").value;
+var email = document.getElementById("provideremail").value;
+var adress = document.getElementById("provideradress").value;
+
+// partie Ajax
+
+$.ajax({
+  url:'/provider/ajaxAdd',
+  type: "POST",
+  dataType: "json",
+  data: {
+       "name": name,
+	   "email": email,
+       "adress":adress
+     },
+  async: true,
+  success: function (res)
+    {
+        console.log(res)
+       // $('#resulat').text(res.resultat);
+       alert("Ajout avec succès");
+       //location.href = '/provider/list';
+    }
+});
+
+});
+
+});
+</script>
+{% endblock %}
